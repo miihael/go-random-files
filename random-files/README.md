@@ -26,6 +26,7 @@ Options:
   -random-fanout=false: randomize fanout numbers
   -random-size=true: randomize filesize
   -seed=0: random seed - 0 for current time
+  -calc-md5: calc and print MD5 for each file
 ```
 
 ## Examples

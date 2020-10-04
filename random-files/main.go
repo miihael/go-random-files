@@ -9,8 +9,8 @@ import (
 	"os"
 	"time"
 
-	randomfiles "github.com/jbenet/go-random-files"
-	ringreader "github.com/jbenet/go-random-files/ringreader"
+	randomfiles "github.com/miihael/go-random-files"
+	ringreader "github.com/miihael/go-random-files/ringreader"
 )
 
 var usage = `usage: %s [options] <path>...
@@ -44,6 +44,8 @@ func init() {
 	flag.Int64Var(&opts.RandomSeed, "seed", 0, "random seed - 0 for current time")
 	flag.BoolVar(&opts.RandomFanout, "random-fanout", false, "randomize fanout numbers")
 	flag.BoolVar(&opts.RandomSize, "random-size", true, "randomize filesize")
+
+	flag.BoolVar(&opts.MD5, "calc-md5", false, "calc and print MD5 sum for each file")
 }
 
 func parseArgs() error {

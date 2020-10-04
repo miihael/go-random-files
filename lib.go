@@ -1,7 +1,9 @@
 package randomfiles
 
 import (
+	"crypto/md5"
 	"fmt"
+	"hash"
 	"io"
 	"math/rand"
 	"os"
@@ -22,6 +24,8 @@ type Options struct {
 	RandomSeed   int64 // use a random seed. if 0, use a random seed
 	RandomSize   bool  // randomize file sizes
 	RandomFanout bool  // randomize fanout numbers
+
+	MD5 bool //if defined, calculate MD5 for each generated file
 }
 
 func WriteRandomFiles(root string, depth int, opts *Options) error {
@@ -79,10 +83,19 @@ func WriteRandomFile(root string, opts *Options) error {
 		return err
 	}
 
-	if _, err := io.CopyN(f, opts.Source, filesize); err != nil {
+	var dst io.Writer = f
+	var hw hash.Hash
+	if opts.MD5 {
+		hw = md5.New()
+		dst = io.MultiWriter(hw, f)
+	}
+	if _, err := io.CopyN(dst, opts.Source, filesize); err != nil {
 		return err
 	}
 
+	if opts.MD5 {
+		fmt.Fprintf(opts.Out, "%x\t", hw.Sum(nil))
+	}
 	if opts.Out != nil {
 		fmt.Fprintln(opts.Out, filepath)
 	}
