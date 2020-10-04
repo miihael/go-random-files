@@ -15,7 +15,7 @@ func TestRingReader(t *testing.T) {
 			t.Error(err)
 		}
 		if n != len(buf) {
-			t.Error("did not read %d bytes", n)
+			t.Errorf("did not read %d bytes", n)
 		}
 		t.Log("read:", buf)
 	}
