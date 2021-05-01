@@ -36,6 +36,7 @@ func init() {
 	flag.BoolVar(&cryptorand, "random-crypto", false, "use cryptographic randomness for files")
 	flag.StringVar(&alphabet, "alphabet", "easy", "alphabet for filenames {easy, hard}")
 	flag.IntVar(&opts.FileSize, "filesize", 4096, "filesize - how big to make each file (or max)")
+	flag.IntVar(&opts.MinSize, "minsize", 1, "minimum file size - how small to make each file when random-size option is true")
 
 	flag.IntVar(&opts.FanoutDepth, "depth", 2, "fanout depth - how deep the hierarchy goes")
 	flag.IntVar(&opts.FanoutDirs, "dirs", 5, "fanout dirs - number of dirs per dir (or max)")

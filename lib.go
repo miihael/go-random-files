@@ -15,6 +15,7 @@ type Options struct {
 	Source io.Reader // randomness source
 
 	FileSize int    // the size per file.
+	MinSize  int    // the size per file.
 	Alphabet []rune // for filenames
 
 	FanoutDepth int // how deep the hierarchy goes
@@ -72,7 +73,8 @@ func RandomFilename(length int, alphabet []rune) string {
 func WriteRandomFile(root string, opts *Options) error {
 	filesize := int64(opts.FileSize)
 	if opts.RandomSize {
-		filesize = rand.Int63n(filesize) + 1
+		minsz := int64(opts.MinSize)
+		filesize = rand.Int63n(filesize-minsz) + minsz
 	}
 
 	n := rand.Intn(FilenameSize-4) + 4
