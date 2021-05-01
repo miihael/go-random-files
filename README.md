@@ -5,24 +5,24 @@ Useful for testing filesystems.
 
 ```
 # library
-go get -u github.com/jbenet/go-random-files
+go get -u github.com/miihael/go-random-files
 
 # binary
-go get -u github.com/jbenet/go-random-files/random-files
+go get -u github.com/miihael/go-random-files/random-files
 ```
 
 ### Library godoc: https://godoc.org/github.com/jbenet/go-random-files
 
 # random-files - create random fs hierarchies
 
-See more about the binary at: github.com/jbenet/go-random-files/tree/master/random-files
+See more about the binary at: github.com/miihael/go-random-files/tree/master/random-files
 
 Useful for testing filesystems.
 
 ## Install
 
 ```
-go get -u github.com/jbenet/go-random-files/random-files
+go get -u github.com/miihael/go-random-files/random-files
 ```
 
 ## Usage
@@ -43,6 +43,8 @@ Options:
   -random-fanout=false: randomize fanout numbers
   -random-size=true: randomize filesize
   -seed=0: random seed - 0 for current time
+  -calc-md5: output MD5 for each generated file
+  -minsize=1: minimum file size when random-size is used
 ```
 
 ### Examples
